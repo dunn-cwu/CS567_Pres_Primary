@@ -1,4 +1,6 @@
 library(ggplot2)
+library(dplyr)
+library(lubridate)
 
 setwd("C:\\Users\\Coder\\OneDrive\\Documents\\CS 567 Computational Stats\\CS567_Pres_Primary")
 
@@ -8,7 +10,14 @@ theme_set(
 )
 
 filterOutCandidate<-function(df, canID, pollsterID) {
-  df<-df[df$candidate_id == canID & df$pollster_id == pollsterID, c("end_date", "pct")]
+  if (pollsterID == 0)
+  {
+    df<-df[df$candidate_id == canID, c("end_date", "pct")]
+  }
+  else 
+  {
+    df<-df[df$candidate_id == canID & df$pollster_id == pollsterID, c("end_date", "pct")]
+  }
   df<-setNames(aggregate(df[, 2], list(df$end_date), mean), c("end_date", "pct"))
   return (df)
 }
@@ -28,23 +37,52 @@ pdata_dem<-subset(pdata_dem, fte_grade == 'A+' | fte_grade == 'A' | fte_grade ==
 # Replace data strings with date data type
 pdata_dem$end_date <- as.Date(pdata_dem$end_date, format = "%m/%d/%y")
 
+# Filter out date range
+pdata_dem<-pdata_dem[pdata_dem$end_date >= "2020-01-01",]
+
 # Sort dataframe by poll end date, question id, and candidate id
 pdata_dem<-pdata_dem[order(pdata_dem$end_date, pdata_dem$question_id, pdata_dem$candidate_id),]
 View(pdata_dem)
 
+# Use poll 1102
+poll<-0
+
 # Get poll data for sanders
-sanders<-filterOutCandidate(pdata_dem, 13257, 1102)
-View(sanders)
+sanders<-filterOutCandidate(pdata_dem, 13257, poll)
 
 # Get poll data for biden
-biden<-filterOutCandidate(pdata_dem, 13256, 1102)
-View(biden)
+biden<-filterOutCandidate(pdata_dem, 13256, poll)
+
+# Get poll data for biden
+bloomberg<-filterOutCandidate(pdata_dem, 13289, poll)
+
+# Get poll data for buttigieg
+buttigieg<-filterOutCandidate(pdata_dem, 13345, poll)
+
+# Get poll data for buttigieg
+warren<-filterOutCandidate(pdata_dem, 13258, poll)
+
+#spline.d <- as.data.frame(spline(sanders$end_date, sanders$pct))
+#spline.d$x <- as.Date(spline.d$x, origin = "1970-01-01")
+
+# Set plot line size
+lineSize<-1
 
 # Plot sanders polls
 ggplot() +
-  geom_line(data=sanders, aes(x=end_date, y=pct), size = 1, color = "darkred") +
-  #geom_point(data=sanders, aes(x=end_date, y=pct, group=1)) +
-  geom_line(data=biden, aes(x=end_date, y=pct), size = 1, color = "steelblue") +
-  #geom_point(data=biden, aes(x=end_date, y=pct, group=1)) +
-  ggtitle("Bernie Sanders Percent of Support") +
-  labs(y="Percent", x="Date")
+  geom_line(data=sanders, aes(x=end_date, y=pct, color="san"), size = lineSize) +
+  # geom_point(data=sanders, aes(x=end_date, y=pct, group=1)) +
+  geom_line(data=biden, aes(x=end_date, y=pct, color="bid"), size = lineSize) +
+  # geom_point(data=biden, aes(x=end_date, y=pct, group=1)) +
+  geom_line(data=bloomberg, aes(x=end_date, y=pct, color="bloom"), size = lineSize) +
+  geom_line(data=buttigieg, aes(x=end_date, y=pct, color="butt"), size = lineSize) +
+  geom_line(data=warren, aes(x=end_date, y=pct, color="war"), size = lineSize) +
+  #geom_vline(xintercept = "2020-02-03", linetype="dotted", color = "blue", size=1.5) +
+  geom_vline(xintercept = as.numeric(as.Date("2020-02-03")), size=1, linetype=4) +
+  geom_vline(xintercept = as.numeric(as.Date("2020-02-11")), size=1, linetype=4) +
+  geom_vline(xintercept = as.numeric(as.Date("2020-02-22")), size=1, linetype=4) +
+  scale_color_discrete(name = "Candidate", labels = c("Biden", "Bloomberg", "Buttigieg", "Sanders", "Warren")) +
+  #geom_line(data = spline.d, aes(x = x, y = y), size = 1)
+  ggtitle("Candidate Support Over Time") +
+  labs(y="Percent", x="Date") +
+  theme(legend.position="bottom")
