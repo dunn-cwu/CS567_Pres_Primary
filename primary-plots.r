@@ -44,7 +44,7 @@ pdata_dem<-pdata_dem[pdata_dem$end_date >= "2020-01-01",]
 pdata_dem<-pdata_dem[order(pdata_dem$end_date, pdata_dem$question_id, pdata_dem$candidate_id),]
 View(pdata_dem)
 
-# Use poll 1102
+# Use poll 1102 or 0 for all polls
 poll<-0
 
 # Get poll data for sanders
