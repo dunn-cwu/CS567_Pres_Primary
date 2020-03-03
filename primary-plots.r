@@ -67,7 +67,7 @@ warren<-filterOutCandidate(pdata_dem, 13258, poll)
 
 # Set plot line size
 lineSize<-1
-d_election=data.frame(date=as.Date(c("2020-02-03", "2020-02-11", "2020-02-22")), event=c("Iowa Caucus", "New Hampshire Primary", "Nevada Caucus"))
+d_election=data.frame(date=as.Date(c("2020-02-03", "2020-02-11", "2020-02-22", "2020-02-29")), event=c("Iowa Caucus", "New Hampshire Primary", "Nevada Caucus", "South Carolina Primary"))
 d_debate=data.frame(date=as.Date(c("2020-02-07", "2020-02-19")), event=c("8th Presidential Debate", "9th Presidential Debate"))
 # Plot sanders polls
 ggplot() +
@@ -84,10 +84,10 @@ ggplot() +
   #geom_vline(xintercept = as.numeric(as.Date("2020-02-22")), size=1, linetype=4) +
 
   geom_vline(data=d_election, mapping=aes(xintercept=date), color="red") +
-  geom_text(data=d_election, mapping=aes(x=date, y=0, label=event), size=4, angle=90, vjust=-0.4, hjust=0.15) +
+  geom_text(data=d_election, mapping=aes(x=date, y=0, label=event), size=4, angle=90, vjust=-0.4, hjust=0.1) +
   geom_text(data=d_election, mapping=aes(x=date, y=0, label=date), size=4, angle=90, vjust=1.1, hjust=0.15) +
   geom_vline(data=d_debate, mapping=aes(xintercept=date), color="blue") +
-  geom_text(data=d_debate, mapping=aes(x=date, y=0, label=event), size=4, angle=90, vjust=-0.4, hjust=0.15) +
+  geom_text(data=d_debate, mapping=aes(x=date, y=0, label=event), size=4, angle=90, vjust=-0.4, hjust=0.1) +
   geom_text(data=d_debate, mapping=aes(x=date, y=0, label=date), size=4, angle=90, vjust=1.1, hjust=0.15) +
 
   scale_color_discrete(name = "Candidate", labels = c("Biden", "Bloomberg", "Buttigieg", "Sanders", "Warren")) +
