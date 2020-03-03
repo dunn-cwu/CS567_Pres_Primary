@@ -12,4 +12,6 @@
 /main.synctex.gz
 /main.toc
 /main.dvi
+/main.fdb_latexmk
+/main.fls
 *.log
