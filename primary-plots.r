@@ -32,13 +32,13 @@ pdata_dem<-pdata[pdata$party=="DEM", c("question_id", "poll_id", "pollster_id", 
 pdata_dem[pdata_dem == ""] = NA
 
 # Filter out all polls that are rated worse than A-
-pdata_dem<-subset(pdata_dem, fte_grade == 'A+' | fte_grade == 'A' | fte_grade == 'A-')
+#pdata_dem<-subset(pdata_dem, fte_grade == 'A+' | fte_grade == 'A' | fte_grade == 'A-')
 
 # Replace data strings with date data type
 pdata_dem$end_date <- as.Date(pdata_dem$end_date, format = "%m/%d/%y")
 
 # Filter out date range
-pdata_dem<-pdata_dem[pdata_dem$end_date >= "2020-02-01",]
+pdata_dem<-pdata_dem[pdata_dem$end_date >= "2020-01-01",]
 
 # Sort dataframe by poll end date, question id, and candidate id
 pdata_dem<-pdata_dem[order(pdata_dem$end_date, pdata_dem$question_id, pdata_dem$candidate_id),]
@@ -65,7 +65,7 @@ warren<-filterOutCandidate(pdata_dem, 13258, poll)
 
 # Set plot line size
 lineSize<-1
-d_election=data.frame(date=as.Date(c("2020-02-03", "2020-02-11", "2020-02-22", "2020-02-29")), event=c("Iowa Caucus", "New Hampshire Primary", "Nevada Caucus", "South Carolina Primary"))
+d_election=data.frame(date=as.Date(c("2020-02-03", "2020-02-11", "2020-02-22", "2020-02-29", "2020-03-03")), event=c("Iowa Caucus", "New Hampshire Primary", "Nevada Caucus", "South Carolina Primary", "Super Tuesday"))
 d_debate=data.frame(date=as.Date(c("2020-02-07", "2020-02-19")), event=c("8th Presidential Debate", "9th Presidential Debate"))
 
 # Plot polls
