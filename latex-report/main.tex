@@ -1,0 +1,98 @@
+%-----------------------------------------------------------------------------------------
+% Final year project report/dissertation template
+%-----------------------------------------------------------------------------------------
+% R F L Evans (2019)
+% Licensed under the public domain (CC0) licence:
+%
+% The person who associated a work with this deed has dedicated the work to the public 
+% domain by waiving all of his or her rights to the work worldwide under copyright law, 
+% including all related and neighboring rights, to the extent allowed by law.
+%
+% You can copy, modify, distribute and perform the work, even for commercial purposes,
+%  all without asking permission.
+%----------------------------------------------------------------------------------------
+%
+
+%-----------------------------------------------------------------------------------------
+% Determines the type of document and font size
+%-----------------------------------------------------------------------------------------
+\documentclass[12pt,a4paper]{article}
+%-----------------------------------------------------------------------------------------
+% Font control
+%-----------------------------------------------------------------------------------------
+\usepackage{mathptmx} % Times Roman Font
+%-----------------------------------------------------------------------------------------
+\usepackage{helvet} % Arial/Helvetica font
+\renewcommand{\familydefault}{\sfdefault} % Makes serif text all Helvetica
+%-----------------------------------------------------------------------------------------
+% Set up the page margins
+%-----------------------------------------------------------------------------------------
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm]{geometry} % Sets the page margins
+%-----------------------------------------------------------------------------------------
+% Allow graphics
+%-----------------------------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{placeins}
+\usepackage[table]{xcolor}
+\usepackage{url}
+
+\input{sections/preamble.tex}
+
+%-----------------------------------------------------------------------------------------
+% Add your report title here
+%-----------------------------------------------------------------------------------------
+\title{\huge{\textbf{CS Report Template}}}
+
+% Add your name here
+\author{
+        Andrew Dunn \\
+        Department of Computer Science\\
+        Central Washington University\\
+        Ellensburg, Wa}
+\date{\today}
+
+%-----------------------------------------------------------------------------------------
+% The start of the document
+%-----------------------------------------------------------------------------------------
+\begin{document}
+
+%-----------------------------------------------------------------------------------------
+% This adds the title page
+%-----------------------------------------------------------------------------------------
+\maketitle
+\thispagestyle{empty}
+
+%-----------------------------------------------------------------------------------------
+% This adds the abstract
+%-----------------------------------------------------------------------------------------
+
+%\clearpage % moves to the next page
+%\begin{abstract}
+%This is the abstract \ldots Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+%\end{abstract}
+%\thispagestyle{empty}
+
+%-----------------------------------------------------------------------------------------
+% Move to a new page and set the page numbering from here
+%-----------------------------------------------------------------------------------------
+\clearpage % moves to the next page
+\pagenumbering{arabic}
+
+\input{sections/intro.tex}
+
+\input{sections/design.tex}
+
+\input{sections/model.tex}
+
+\input{sections/analysis.tex}
+
+\input{sections/conclusions.tex}
+
+\clearpage % moves to the next page
+
+\bibliographystyle{abbrv}
+\bibliography{library}
+
+\end{document}
