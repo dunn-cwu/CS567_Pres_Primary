@@ -29,7 +29,9 @@ filterOutCandidate<-function(df, canID, pollsterID, useAggr) {
 pdata<-read.csv("data/president_primary_polls.csv", header = TRUE)
 
 # Filter out democrats and needed columns
-pdata_dem<-pdata[pdata$party=="DEM", c("question_id", "poll_id", "pollster_id", "fte_grade", "end_date", "candidate_id", "candidate_name", "pct")]
+pdata_dem<-pdata[pdata$party=="DEM", c("question_id", "poll_id", "pollster_id", 
+                                       "fte_grade", "end_date", "candidate_id", 
+                                       "candidate_name", "pct")]
 
 # Replace blank cells with NA
 pdata_dem[pdata_dem == ""] = NA
@@ -41,10 +43,12 @@ pdata_dem$end_date <- as.Date(pdata_dem$end_date, format = "%m/%d/%y")
 pdata_dem<-pdata_dem[pdata_dem$end_date >= "2020-01-01",]
 
 # Sort dataframe by poll end date, question id, and candidate id
-pdata_dem<-pdata_dem[order(pdata_dem$end_date, pdata_dem$question_id, pdata_dem$candidate_id),]
+pdata_dem<-pdata_dem[order(pdata_dem$end_date, 
+                           pdata_dem$question_id, pdata_dem$candidate_id),]
 
 # Filter out all polls that are rated worse than A-
-pdata_dem<-subset(pdata_dem, fte_grade == 'A+' | fte_grade == 'A' | fte_grade == 'A-')
+pdata_dem<-subset(pdata_dem, fte_grade == 'A+' | 
+                    fte_grade == 'A' | fte_grade == 'A-')
 
 View(pdata_dem)
 
