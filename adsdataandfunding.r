@@ -26,7 +26,7 @@ data$NewHampshire
 
 ###########################IOWA
 y1<- data[['Iowa']]
-x1<- data[['candidate']]
+x1<- data[['Candidate']]
 xx1<-barplot(y1,names.agr =x1,xaxt ='n',ylim =c(0,20000),ylab ='Money spends on TV Ads in Thousands', width = 0.4,col ='orange',
             main = "Money spends on Ads for democratic Candidates in IOWA", border ='blue')
 text(x= xx1, y= y1,labels =y1, pos =3 , cex=0.8 ,col ='red')
