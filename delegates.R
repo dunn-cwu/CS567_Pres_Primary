@@ -1,9 +1,10 @@
 library(ggplot2)
 library(viridis)
+library(dplyr)
 library(hrbrthemes)
 
 #setting the working directory for loading the dataset
-setwd("D:\\MyDocs\\CWU\\Winter2020\\Computational Statistics\\Project1")
+setwd("C:\\Users\\phanho\\Desktop\\Project1cs565\\CS567_Pres_Primary")
 contestantData <- read.csv("Delegates.csv")
 States<-contestantData$States
 
