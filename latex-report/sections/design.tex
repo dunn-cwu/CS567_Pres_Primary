@@ -1,1 +1,9 @@
 \section{Design}\label{design}
+
+\subsection{Data Set}
+
+All of the polling data used in our analysis was downloaded from FiveThirtyEight, a well known political blog that does predictions for various elections. They collect polling data from a large number of different pollsters and then combine all into a single $.csv$ file that is available for download. In addition, FiveThirtyEight rates all pollsters based on their quality and level of bias. Ratings range from A+ down to F. Pollsters with the least bias have the best ratings. Using their ratings, we are able to filter the data set such that only highly rated polls are considered. Other than polling data, FiveThirtyEight presents many other aspects of the election we can analyze such as candidate funding and number of delegates.
+
+\subsection{Implementation}
+
+For our experiments we implemented a program in R that can import the data set and generate various plots of the polling data. Using these plots we can visualize the data and conduct some analysis, looking for trends.
