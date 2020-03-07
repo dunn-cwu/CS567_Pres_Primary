@@ -10,7 +10,7 @@ For our experiments we implemented a program in R script that can import the dat
 
 \begin{figure}[H]
 \centering
-\begin{boxedverbatim}
+\begin{lstlisting}[language=R]
 # Load data set from csv file
 pdata<-read.csv("data/president_primary_polls.csv", header = TRUE)
 
@@ -31,12 +31,12 @@ pdata_dem<-pdata_dem[pdata_dem$end_date >= "2020-01-01",]
 
 # Sort dataframe by poll end date, question id, and candidate id
 pdata_dem<-pdata_dem[order(pdata_dem$end_date, 
-                           pdata_dem$question_id, pdata_dem$candidate_id),]
+                     pdata_dem$question_id, pdata_dem$candidate_id),]
 
 # Filter out all polls that are rated worse than A-
 pdata_dem<-subset(pdata_dem, fte_grade == 'A+' | 
                     fte_grade == 'A' | fte_grade == 'A-')
-\end{boxedverbatim}
+\end{lstlisting}
 \caption{Example Code Snippet - Data Filtering}
 \label{code:filter}
 \end{figure}
